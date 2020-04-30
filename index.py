@@ -14,6 +14,7 @@ import socket, subprocess,sys
 import _thread
 import collections
 from datetime import datetime
+import shelve
 
 
 
@@ -84,6 +85,7 @@ def networkmenu():
     print ("""
    {1}--Ping Sweep
    {2}--TCP Scan
+   {3}--Port Scan
    {0}--Back to Main Menu
    {99}--Exit
  """)
@@ -93,7 +95,7 @@ def networkmenu():
     elif choice == "2":
         tcpscanfun()
     elif choice == "3":
-        wifimenu()
+        portscanfun()
     elif choice == "4":
         malwaremenu()
     elif choice == "5":
@@ -273,5 +275,8 @@ def tcpscanfun():
             print ("scanning complete in " , total)
 
             networkmenu()
+
+
+
 # Call main menu to run program
 mainmenu()
