@@ -16,6 +16,7 @@ import collections
 from datetime import datetime
 import shelve
 from queue import Queue
+from bs4 import BeautifulSoup
 
 
 
@@ -54,7 +55,7 @@ def mainmenu():
  """)
     choice = input("SecFirm~# ")
     if choice == "1":
-        webmain()
+        webmenu()
     elif choice == "2":
         networkmenu()
     elif choice == "3":
@@ -76,12 +77,64 @@ def mainmenu():
         print(logo)
         mainmenu()
 
+# Run Website Pentesting HERE
+
+
+def webmenu():
+    
+
+    print ("""
+   {1}--Web Crawler
+   {2}--TCP Scan
+   {3}--Port Scan
+   {0}--Back to Main Menu
+   {99}--Exit
+ """)
+    choice = input("SecFirm~# ")
+    if choice == "1":
+        webcrawlerfun()
+    elif choice == "2":
+        tcpscanfun()
+    elif choice == "3":
+        portscanfun()
+    elif choice == "4":
+        malwaremenu()
+    elif choice == "5":
+        dosmenu()
+    elif choice == "6":
+        hardeningmenu()
+    elif choice == "0":
+        os.system('clear')
+        print(logo)
+        mainmenu()
+    elif choice == "99":
+        print("Thanks for Using SecFirm")
+        os.system('clear'), sys.exit()
+    elif choice == "":
+        print("\033[1m [+] Kindly Choose One Option \033[0m")
+        webmenu()
+    else:
+        print(logo)
+        webmenu()
+
+# Web Crawler | Website Pentesting | Webserver Security Testing
+
+def webcrawlerfun():
+
+    os.system('clear')
+    print(logo)
+    print ("[+] Website Pentesting | Web Crawler : \n")
+    url = input("Enter a website to extract the URL's from: ")
+    r  = requests.get("http://" +url)
+    data = r.text
+    soup = BeautifulSoup(data, 'html.parser')
+    for link in soup.find_all('a'):
+        print(link.get('href'))
+        
+    webmenu()
 # Run Netowrk Pentesting here
 
 def networkmenu():
-    os.system('clear')
-    print(logo)
-    print ("[+] Netowrk Pentesting Module : \n")
 
     print ("""
    {1}--Ping Sweep
